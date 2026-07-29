@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Address Capture Test</title>
+<style>
+  :root { font-family: -apple-system, system-ui, sans-serif; }
+  body { max-width: 480px; margin: 16px auto; padding: 0 12px; color: #1c1b1f; }
+  h2 { font-weight: 600; }
+  p.hint { color: #555; font-size: 13px; }
+  label { display: block; margin-top: 12px; font-size: 13px; color: #444; }
+  input, select {
+    width: 100%; padding: 10px; font-size: 16px;
+    box-sizing: border-box; border: 1px solid #bbb; border-radius: 6px;
+    background: #fff;
+  }
+  button {
+    margin-top: 20px; padding: 12px 24px; font-size: 16px;
+    background: #0060df; color: #fff; border: none; border-radius: 6px;
+    font-weight: 600;
+  }
+  button:hover { background: #003eaa; }
+</style>
+</head>
+<body>
+<h2>Address capture test</h2>
+<p class="hint">All required fields are pre-filled with values that will pass Firefox's capture gates. Edit the name / street to be distinct from your saved addresses, then submit. Watch Logcat for <code>SaveAddress</code>.</p>
+
+<form action="/success.html" method="get" autocomplete="on">
+  <label>Name
+    <input name="name" autocomplete="name" value="Address Test User" required>
+  </label>
+
+  <label>Organization
+    <input name="org" autocomplete="organization" value="Mozilla">
+  </label>
+
+  <label>Street address
+    <input name="street" autocomplete="street-address" value="999 Test Street" required>
+  </label>
+
+  <label>City
+    <input name="city" autocomplete="address-level2" value="Mountain View" required>
+  </label>
+
+  <label>State / Province
+    <select name="state" autocomplete="address-level1" required>
+      <option value="CA" selected>California</option>
+      <option value="NY">New York</option>
+      <option value="TX">Texas</option>
+      <option value="WA">Washington</option>
+      <option value="OR">Oregon</option>
+      <option value="MA">Massachusetts</option>
+    </select>
+  </label>
+
+  <label>ZIP / Postal code
+    <input name="zip" autocomplete="postal-code" value="94016" required pattern="\d{5}(-\d{4})?">
+  </label>
+
+  <label>Country
+    <select name="country" autocomplete="country" required>
+      <option value="US" selected>United States</option>
+      <option value="CA">Canada</option>
+      <option value="GB">United Kingdom</option>
+      <option value="DE">Germany</option>
+      <option value="FR">France</option>
+    </select>
+  </label>
+
+  <label>Phone
+    <input name="tel" autocomplete="tel" type="tel" value="+15551234567">
+  </label>
+
+  <label>Email
+    <input name="email" autocomplete="email" type="email" value="test@example.com">
+  </label>
+
+  <button type="submit">Submit</button>
+</form>
+
+<p style="margin-top: 20px; font-size: 13px;">
+  <a href="/creditcard-capture-test.html" style="color: #0060df;">→ Try the credit-card capture test instead</a>
+</p>
+</body>
+</html>
